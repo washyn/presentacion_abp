@@ -1,14 +1,8 @@
-# Template de Arquitectura Empresarial - KFC API
+# Template de Arquitectura Empresarial - API
 
-[![.NET 8](https://img.shields.io/badge/.NET-8.0-512bd4.svg)](https://dotnet.microsoft.com/download/dotnet/8.0)
-[![ABP Framework](https://img.shields.io/badge/ABP-Framework-blue.svg)](https://abp.io/)
+Este proyecto es una **Plantilla de Arquitectura de Referencia** diseñada para demostrar los beneficios de utilizar [ABP Framework](https://abp.io/) junto con **Clean Architecture** en entornos empresariales.
 
-Este proyecto es una **Plantilla de Arquitectura de Referencia** diseñada para demostrar los beneficios de utilizar [ABP Framework](https://abp.io/) junto con **Clean Architecture** en entornos empresariales. 
-
-> [!IMPORTANT]
-> **Para Líderes Técnicos:** Hemos preparado una [Propuesta Técnica Detallada](PROPUESTA_TECNICA.md) que explica por qué esta arquitectura es la mejor opción para acelerar el desarrollo y garantizar la calidad en la compañía.
-
----
+***
 
 ## 🚀 Propuesta de Valor
 
@@ -23,7 +17,7 @@ Este template no es solo una API de productos; es una demostración de cómo est
 
 - **Framework Core:** ASP.NET Core 8
 - **Framework de Aplicación:** ABP Framework (Volo.Abp)
-- **ORM:** Entity Framework Core con SQLite (fácilmente intercambiable)
+- **ORM:** Entity Framework Core con SQLite (fácilmente intercambiable a oracle, sqlserver o mongo )
 - **Validación:** FluentValidation
 - **Logging:** Serilog
 - **Documentación:** Swagger / OpenAPI
@@ -42,9 +36,11 @@ El proyecto sigue una estructura modular y de capas (DDD):
 ## 🏁 Cómo Empezar
 
 ### Requisitos
+
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
 ### Ejecución Rápida
+
 1. Clonar el repositorio.
 2. Restaurar dependencias:
    ```bash
@@ -64,5 +60,6 @@ El proyecto incluye una suite de pruebas automatizadas que validan cada capa:
 dotnet test
 ```
 
----
+***
+
 Diseñado con ❤️ para la excelencia técnica.

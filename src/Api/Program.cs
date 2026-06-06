@@ -1,4 +1,5 @@
 using Serilog;
+using Serilog.Formatting.Json;
 using Volo.Abp.Data;
 
 namespace Washyn.Kfc;
@@ -9,7 +10,9 @@ public static class Program
     {
         var loggerConfiguration = new LoggerConfiguration()
             .Enrich.FromLogContext()
-            .WriteTo.Async(c => c.File("Logs/logs.log", rollingInterval: RollingInterval.Day, shared: true))
+            .Enrich.WithMachineName()
+            // can be ad other enrichers
+            .WriteTo.Async(c => c.File(new JsonFormatter(),"Logs/logs.log", rollingInterval: RollingInterval.Day, shared: true))
             .WriteTo.Async(c => c.Console());
 
         Log.Logger = loggerConfiguration.CreateLogger();
