@@ -1,4 +1,7 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using System.Reflection;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.OpenApi.Models;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Serilog;
@@ -25,10 +28,14 @@ namespace Washyn.Kfc
 
             Configure<AbpClockOptions>(options => { options.Kind = DateTimeKind.Utc; });
             ConfigureSwaggerServices(context, configuration);
+
+            services.AddHealthChecks()
+                .AddCheck<DbHealthCheck>("database");
         }
 
         private static void ConfigureSwaggerServices(ServiceConfigurationContext context, IConfiguration configuration)
         {
+            // https://editor.swagger.io/
             context.Services
                 .AddAbpSwaggerGen()
                 .ConfigureSwaggerGen(options =>
@@ -36,6 +43,8 @@ namespace Washyn.Kfc
                     options.SwaggerDoc("v1", new OpenApiInfo { Title = "App API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
                     options.CustomSchemaIds(type => type.FullName);
+                    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,
+                        $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
                 });
         }
 
@@ -62,6 +71,14 @@ namespace Washyn.Kfc
             app.UseSwagger();
             app.UseAbpSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "App API"); });
             app.UseAbpSerilogEnrichers();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+            });
             app.UseConfiguredEndpoints();
         }
     }

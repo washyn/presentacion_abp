@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Volo.Abp.Dapper;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Sqlite;
 using Volo.Abp.Modularity;
 
 namespace Washyn.Kfc
 {
+    [DependsOn(typeof(AbpDapperModule))]
     [DependsOn(typeof(DomainModule))]
     [DependsOn(typeof(AbpEntityFrameworkCoreModule))]
     [DependsOn(typeof(AbpEntityFrameworkCoreSqliteModule))]

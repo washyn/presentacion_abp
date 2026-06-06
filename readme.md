@@ -1,123 +1,68 @@
-# KFC API - Gestión de Productos y Precios por Canal
+# Template de Arquitectura Empresarial - KFC API
 
-Este proyecto de beneficios de uso de ABP(librerias) en una API REST hecha con ASP.NET Core 8 que nos permite gestionar los productos de KFC, sus canales de venta y los precios en cada canal como ejemplo de uso.
+[![.NET 8](https://img.shields.io/badge/.NET-8.0-512bd4.svg)](https://dotnet.microsoft.com/download/dotnet/8.0)
+[![ABP Framework](https://img.shields.io/badge/ABP-Framework-blue.svg)](https://abp.io/)
 
-## ¿Cómo está construido?
+Este proyecto es una **Plantilla de Arquitectura de Referencia** diseñada para demostrar los beneficios de utilizar [ABP Framework](https://abp.io/) junto con **Clean Architecture** en entornos empresariales. 
 
-Se ha usado una arquitectura limpia (Clean Architecture) que separa todo en capas bien organizadas:
+> [!IMPORTANT]
+> **Para Líderes Técnicos:** Hemos preparado una [Propuesta Técnica Detallada](PROPUESTA_TECNICA.md) que explica por qué esta arquitectura es la mejor opción para acelerar el desarrollo y garantizar la calidad en la compañía.
 
-1. **Capa de Dominio** (`Domain`) - El core del sistema:
+---
 
-   - Aquí estan nuestras entidades (Product, Channel)
-   - Las interfaces de repositorios (IProductRepository)
+## 🚀 Propuesta de Valor
 
-2. **Capa de Aplicación** (`Application`):
+Este template no es solo una API de productos; es una demostración de cómo estandarizar el desarrollo:
 
-   - Los servicios que hacen el trabajo duro (ProductsAppService)
-   - DTOs para mover datos de un lado a otro
-   - Validaciones con **FluentValidation** para que nadie meta datos raros
-   - Mapeos automáticos con **AutoMapper**
+- **Productividad Extrema:** Implementación de CRUDs en minutos usando `CrudAppService`.
+- **Arquitectura Limpia:** Separación estricta de responsabilidades (Dominio, Aplicación, Infraestructura, API).
+- **Calidad Embebida:** Validaciones con FluentValidation, Mapeos con AutoMapper y Unit of Work automático.
+- **Ecosistema de Pruebas:** Suite completa de tests (Unitarios, Integración, Dominio) lista para usar.
 
-3. **Capa de Infraestructura** (`Infrastructure`) - Infraestructura:
+## 🛠️ Stack Tecnológico
 
-   - Repositorios que interactuan con la base de datos usando Entity Framework Core
-   - Configuración de SQLite para guardar todo
-   - Migraciones para evolucionar la base de datos
+- **Framework Core:** ASP.NET Core 8
+- **Framework de Aplicación:** ABP Framework (Volo.Abp)
+- **ORM:** Entity Framework Core con SQLite (fácilmente intercambiable)
+- **Validación:** FluentValidation
+- **Logging:** Serilog
+- **Documentación:** Swagger / OpenAPI
+- **Testing:** xUnit, Shouldly, NSubstitute
 
-4. **Capa de API** (`Api`) - La presentacion:
-   - Controladores REST que exponen todo
-   - Swagger para que probar la API
-   - Middleware para capturar errores y que nada se rompa
-   - Toda la configuración necesaria
+## 🏗️ Estructura del Proyecto
 
+El proyecto sigue una estructura modular y de capas (DDD):
 
-## Patrones y principios, buenas practicas
+1. **[Domain](src/Domain):** Entidades de negocio, constantes e interfaces de repositorio. El "corazón" del sistema.
+2. **[Infrastructure](src/Infrastructure):** Implementación de repositorios, DbContext y migraciones.
+3. **[Application](src/Application):** Servicios de aplicación, DTOs y validadores. Aquí reside la lógica de casos de uso.
+4. **[Api](src/Api):** Controladores REST, configuración de módulos y middlewares.
+5. **[Tests](tests):** Organización paralela de pruebas para cada capa del sistema.
 
-1. **Repositorio** - El almacén de datos :
+## 🏁 Cómo Empezar
 
-   - Usamos IProductRepository como una puerta de acceso a los datos sin preocuparnos por los detalles
-   - La implementación real está en ProductRepository con EF Core haciendo el trabajo sucio que se puede cambiar por otro orm de acceso a datos o SPs segun sea necesario.
+### Requisitos
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
-3. **DTO (Data Transfer Object)**:
-
-   - Objetos como ProductDto y PriceDto que llevan datos entre capas
-   - Evitan exponer las entidades del dominio al exterior
-
-4. **Unidad de Trabajo (Unit of Work)** - Para asegurar las transacciones con ef core:
-
-   - Implementado con app.UseUnitOfWork()
-   - Garantiza que todas las operaciones de base de datos se completen o fallen juntas
-
-5. **Módulo** - Los bloques de construcción:
-
-   - Organizamos todo en módulos cohesivos (ApiModule, ApplicationModule...)
-   - Cada módulo tiene su propia responsabilidad y configuración
-
-6. **Fábrica** - Para crear objetos:
-
-   - EntityFrameworkCoreDbContextFactory crea contextos de base de datos cuando los necesitamos en la migracion y creacion de base de datos
-   - Centraliza la lógica de creación de objetos complejos
-
-7. **Validador** - Para asegurar que los datos sean correctos:
-   - Validadores con **FluentValidation** que aseguran que los datos sean correctos
-   - Código de validación limpio, legible y separado de la lógica de negocio
-
-## Para ejecutar el proyecto:
-
-### Lo que se necesita tener instalado
-
-- .NET 8 SDK
-- Un editor de código (Visual Studio, VS Code, Rider...)
-
-### Pasos para ejecutar
-
-1. Restaurar paquetes NuGet:
-
-   ```
+### Ejecución Rápida
+1. Clonar el repositorio.
+2. Restaurar dependencias:
+   ```bash
    dotnet restore
    ```
-
-2. Ejecutar la aplicación:
-
+3. Ejecutar la API:
+   ```bash
+   dotnet run --project src/Api
    ```
-   cd src/Api
-   dotnet run
-   ```
+4. Abrir Swagger: `http://localhost:5004/swagger`
 
-3. Acceder a Swagger para probar la API:
-   ```
-   http://localhost:5004/swagger
-   ```
+## 🧪 Ejecución de Pruebas
 
-### Sobre la base de datos
+El proyecto incluye una suite de pruebas automatizadas que validan cada capa:
 
-Usamos SQLite porque es ligero y no requiere instalacion como se solicito en la descripcion de la prueba. La configuración está en `src/Api/appsettings.json`, se puede cambiar por sqlite en memoria para los tests integrales(en infraestructura):
-
-```json
-{
-  "ConnectionStrings": {
-    "Default": "Data Source=.KFC.db;"
-  }
-}
+```bash
+dotnet test
 ```
 
-## Para ejecutar tests
-
-1. En la carpeta de pruebas:
-
-   ```
-   cd tests
-   ```
-
-2. Ejecutar las pruebas:
-
-   ```
-   dotnet test
-   ```
-
-## Si tuviéra mas tiempo
-
-10. **Test de integración** :
-
-- Pruebas de integración para ver cómo funciona todo en conjunto
-- Llamadas a los endpoints de la API
+---
+Diseñado con ❤️ para la excelencia técnica.
