@@ -4,7 +4,7 @@ Este proyecto es una **Plantilla de Arquitectura de Referencia** diseñada para 
 
 ***
 
-## 🚀 Propuesta de Valor
+## Propuesta de Valor
 
 Este template no es solo una API de productos; es una demostración de cómo estandarizar el desarrollo:
 
@@ -13,7 +13,7 @@ Este template no es solo una API de productos; es una demostración de cómo est
 - **Calidad Embebida:** Validaciones con FluentValidation, Mapeos con AutoMapper y Unit of Work automático.
 - **Ecosistema de Pruebas:** Suite completa de tests (Unitarios, Integración, Dominio) lista para usar.
 
-## 🛠️ Stack Tecnológico
+## Stack Tecnológico
 
 - **Framework Core:** ASP.NET Core 8
 - **Framework de Aplicación:** ABP Framework (Volo.Abp)
@@ -23,7 +23,7 @@ Este template no es solo una API de productos; es una demostración de cómo est
 - **Documentación:** Swagger / OpenAPI
 - **Testing:** xUnit, Shouldly, NSubstitute
 
-## 🏗️ Estructura del Proyecto
+## Estructura del Proyecto
 
 El proyecto sigue una estructura modular y de capas (DDD):
 
