@@ -1,0 +1,47 @@
+@Api_HostAddress = http://localhost:5004
+
+GET {{Api_HostAddress}}/api/products
+Accept: application/json
+
+###
+POST {{Api_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+    "name": "pruebaaa",
+    "sku": "345"
+}
+
+
+### Error validacion
+
+POST {{Api_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+    "name": "pruebaaaaaaaaaaaaaaaa",
+    "sku": ""
+}
+
+
+### canales
+GET {{Api_HostAddress}}/api/canales
+
+
+### prices get
+GET {{Api_HostAddress}}/api/prices?productId=7cc0e020-43f5-4050-be22-760ac4f5bd74
+
+
+###
+POST http://localhost:5004/api/prices
+accept: text/plain
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+
+{
+    "name": "string",
+    "sku": "67984328976234"
+}
+
+###
+
