@@ -41,3 +41,35 @@ La estructura de tests incluida (`tests/`) no es opcional, es parte integral del
 | **Ecosistema ABP** | Acceso a una comunidad global y mejores prácticas de la industria asi como acceso a otros modulos utiles. |
 
 ---
+
+explicar estos conceptos y beneficios de ABP, explicarlos por separado para no confundir
+
+- 4 capas  
+- preparado pra microservicios
+- Multitenant
+- Caché
+- Healthchecks
+- Unit test
+- Integration test
+- Modularidad
+- Servicios comuines, crud, generic repos, email sending, storage
+- Unot of work
+- HEalthchecks
+- Authorization
+- validation, fluentvalidation automatic
+- Exception handling
+- Auditing
+- Ai module
+- Automapper u otro
+- Background jobs, workers, storage, event bus, localization json
+- Croos cutting concerns
+- DDD infraestructure
+- Auto rest apis
+- Blob storage
+- Audit logging
+- object mapping
+- Email an sms abstraction
+- Localization
+- Settings management
+- Dependency injection
+- Servicios de encriptación
