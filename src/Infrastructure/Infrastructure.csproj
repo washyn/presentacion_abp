@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.25.0.139117">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Volo.Abp.Dapper" Version="8.3.4" />
     <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="8.3.4" />
     <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="8.3.4" />
