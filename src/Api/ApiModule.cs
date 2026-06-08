@@ -31,6 +31,14 @@ namespace Washyn.Kfc
 
             services.AddHealthChecks()
                 .AddCheck<DbHealthCheck>("database");
+            
+            Configure<AbpAspNetCoreMvcOptions>(opt =>
+            {
+                // opt.ConventionalControllers.Create(typeof(ApplicationModule).Assembly, opts =>
+                // {
+                //     opts.UseV3UrlStyle = true;
+                // });
+            });
         }
 
         private static void ConfigureSwaggerServices(ServiceConfigurationContext context, IConfiguration configuration)

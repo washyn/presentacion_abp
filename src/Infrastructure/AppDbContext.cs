@@ -6,6 +6,7 @@ namespace Washyn.Kfc
     public class AppDbContext : AbpDbContext<AppDbContext>
     {
       public DbSet<Product> Products { get; set; }
+      public DbSet<TodoTask> Tasks { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {   
         }

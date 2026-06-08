@@ -1,9 +1,11 @@
 using Microsoft.Extensions.Logging;
+using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
 namespace Washyn.Kfc.Products;
 
+[RemoteService()]
 public class ProductsAppService :
     CrudAppService<Product, ProductDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateProduct>, IProductsAppService
 {
